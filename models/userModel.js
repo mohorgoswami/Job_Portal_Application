@@ -14,15 +14,15 @@ const User = sequelize.define('Users', {
   email: {
     type: DataTypes.STRING,
     allowNull: false,
-    
+
   },
   password: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  role:{
-    type:DataTypes.STRING
+  role: {
+    type: DataTypes.STRING
   },
 });
 
-module.exports = {User};
+module.exports = { User };

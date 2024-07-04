@@ -1,9 +1,10 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const createUser = require('../controller/user.controller');
+const { createUsers } = require("../controller/user.controller");
 
+const { validateRequestBody } = require('../middleware/validateMiddleware');
+const { createUserSchema } = require("../validators/user.validators")
 
-
- router.post('/create', createUser);
+router.post('/create', validateRequestBody(createUserSchema), createUsers);
 
 module.exports = router;

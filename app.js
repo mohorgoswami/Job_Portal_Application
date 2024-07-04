@@ -2,17 +2,16 @@
 const express = require('express');
 // const userRoutes = require('./routes/index');
 const indexRoutes = require('./routes/index');
-const sequelize = require('./config/db'); 
-// const User = require('./model/userModel'); 
+const sequelize = require('./config/db');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8501;
 
 
 app.use(express.json());
 
-app.use('/api', indexRoutes);
+app.use('/api/v1/', indexRoutes);
 
 
 
