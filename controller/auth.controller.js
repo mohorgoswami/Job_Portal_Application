@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const {handleCustomErrorResponse}=require("../utils/errorResponseHandlers")
 
-const { User } = require('../models/userModel');
+const { User } = require('../models/index');
 require('dotenv').config();
 
 const generateToken = (user) => {
@@ -39,21 +39,21 @@ const login = async (req, res) => {
     const user = await User.findOne({ where: { email } });
     if (!user) {
 
-        console.log(user);
+      console.log(user);
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-        console.log(isMatch);
+      console.log(isMatch);
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
     const token = generateToken(user);
-    res.status(200).json({message:"Login Successfull", token});
+    res.status(200).json({ message: "Login Successfull", token });
   } catch (error) {
     res.status(500).json({ error: 'Something went wrong' });
   }
 };
 
-module.exports={login,signup};
+module.exports = { login, signup };

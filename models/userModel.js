@@ -18,13 +18,16 @@ const User = sequelize.define('Users', {
   email: {
     type: DataTypes.STRING,
     // allowNull: false,
-    
+
   },
   password: {
     type: DataTypes.STRING,
     // allowNull: false
   },
-  role:{
+  role: {
+    type: DataTypes.STRING
+  },
+  about:{
     type:DataTypes.STRING
   },
   about:{
@@ -32,4 +35,4 @@ const User = sequelize.define('Users', {
   }
 });
 
-module.exports = {User};
+module.exports = { User };

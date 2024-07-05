@@ -1,7 +1,9 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const {getUserById,updateUserById} = require('../controller/user.controller');
+const { {getUserById,updateUserById}s } = require("../controller/user.controller");
 
+const { validateRequestBody } = require('../middleware/validateMiddleware');
+const { createUserSchema } = require("../validators/user.validators")
 
 
  router.get('/user/:id', getUserById);
