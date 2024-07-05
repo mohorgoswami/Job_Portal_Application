@@ -7,22 +7,32 @@ const User = sequelize.define('Users', {
     primaryKey: true,
     autoIncrement: true
   },
-  name: {
+  firstname: {
     type: DataTypes.STRING,
-    allowNull: false,
+    // allowNull: false,
+  },
+  lastname: {
+    type: DataTypes.STRING,
+    // allowNull: false,
   },
   email: {
     type: DataTypes.STRING,
-    allowNull: false,
+    // allowNull: false,
 
   },
   password: {
     type: DataTypes.STRING,
-    allowNull: false
+    // allowNull: false
   },
   role: {
     type: DataTypes.STRING
   },
+  about:{
+    type:DataTypes.STRING
+  },
+  about:{
+    type:DataTypes.STRING
+  }
 });
 
 module.exports = { User };

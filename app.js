@@ -15,7 +15,7 @@ app.use('/api/v1/', indexRoutes);
 
 
 
-sequelize.sync().then(() => {
+sequelize.sync({alter:true}).then(() => {
   console.log('Database synced successfully');
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

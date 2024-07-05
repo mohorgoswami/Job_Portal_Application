@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const {handleCustomErrorResponse}=require("../utils/errorResponseHandlers")
 
 const { User } = require('../models/index');
 require('dotenv').config();
@@ -9,16 +10,19 @@ const generateToken = (user) => {
 };
 
 const signup = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { firstname,lastname, email, password,confirmPassword } = req.body;
 
   try {
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
     }
+    if(password!=confirmPassword){
+      return handleCustomErrorResponse(res, 'Password does not match', 400)
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await User.create({ name, email, password: hashedPassword });
+    const newUser = await User.create({ firstname, lastname,email, password: hashedPassword });
 
     const token = generateToken(newUser);
     res.status(201).json({ user: newUser });
