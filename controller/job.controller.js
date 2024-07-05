@@ -1,6 +1,6 @@
 const { Job } = require("../models/jobModel");
-const { handleErrorResponse, handleSuccessResponse, handleCustomErrorResponse } = require("../utils/errorResponseHandlers"); 
- const { findJobByName, findJobById, findAllJobs, updateJob,deleteJob }=require("../context/job.context");
+const { handleErrorResponse, handleSuccessResponse, handleCustomErrorResponse } = require("../utils/errorResponseHandlers");
+const { findJobByName, findJobById, findAllJobs, updateJob, deleteJob } = require("../context/job.context");
 
 
 const createJob = async (req, res) => {
@@ -40,9 +40,9 @@ const getJobById = async (req, res) => {
         if (!job) {
             return handleCustomErrorResponse(res, 'Job not found', 404);
         }
-        const responseData={
-            id:job.id,
-            jobName:job.name
+        const responseData = {
+            id: job.id,
+            jobName: job.name
 
 
         }
@@ -53,14 +53,14 @@ const getJobById = async (req, res) => {
 }
 
 const updateJobById = async (req, res) => {
-    
+
     try {
         const job = await findJobById(req.params.id);
         if (!job) {
             return handleCustomErrorResponse(res, "Job not found", 404);
         }
 
-        const updatedJob = await updateJob(job, {...req.body});
+        const updatedJob = await updateJob(job, { ...req.body });
 
         await job.save();
         handleSuccessResponse(res, "Job updated successfully", updatedJob, 200);
