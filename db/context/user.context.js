@@ -15,7 +15,13 @@ const verifyEmail = async (email) => {
     return emails
 }
 
+const userById = async (id) => {
+    const userId = await User.findByPk(id)
+    return userId
+}
+
 module.exports = {
     createUser,
-    verifyEmail
+    verifyEmail,
+    userById,
 }

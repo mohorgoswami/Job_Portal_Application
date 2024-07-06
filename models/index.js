@@ -1,6 +1,11 @@
+const { User } = require("../models/userModel");
+const { Job } = require("../models/jobModel");
+const { Application } = require("../models/application.model");
+const { Profile } = require("../models/profile.model");
 
-
-const {User}=require("../models/userModel");
-const {Job}=require("../models/jobModel");
-
-module.exports={User,Job};
+module.exports = {
+    User,
+    Job,
+    Application,
+    Profile,
+};

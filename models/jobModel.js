@@ -7,9 +7,9 @@ const Job = sequelize.define('Jobs', {
     primaryKey: true,
     autoIncrement: true
   },
-  name:{
-    type:DataTypes.STRING,
-    allowNull:false
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false
 
   },
   title: {
@@ -19,15 +19,15 @@ const Job = sequelize.define('Jobs', {
   description: {
     type: DataTypes.STRING,
     allowNull: false,
-    
+
   },
   location: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  salary:{
-    type:DataTypes.INTEGER
+  salary: {
+    type: DataTypes.INTEGER
   },
 });
 
-module.exports = {Job};
+module.exports = { Job };
