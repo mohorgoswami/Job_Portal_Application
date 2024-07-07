@@ -7,6 +7,9 @@ const createJob = async (data) => {
 const findJobByName = async (name) => {
   return await Job.findOne({ where: { name } });
 };
+const findJobByCode = async (name) => {
+  return await Job.findOne({ where: { jobCode } });
+};
 
 const findJobById = async (id) => {
   return await Job.findByPk(id);
@@ -30,5 +33,6 @@ module.exports = {
   findJobById,
   findAllJobs,
   updateJob,
-  deleteJob
+  deleteJob,
+  findJobByCode
 };

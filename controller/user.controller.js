@@ -1,4 +1,4 @@
-const { createUser, verifyEmail } = require("../db/context/user.context");
+const { createUser, verifyEmail ,userById } = require("../db/context/user.context");
 const {
   handleSuccessResponse,
   handleErrorResponse,
@@ -23,34 +23,31 @@ const createUsers = async (req, res) => {
 };
 
 const getUserById = async (req, res) => {
-  const { id } = req.params;
   try {
-    const user = await User.findByPk(id);
+    const user = await userById();
     if (!user) {
-      res.status(404).json({ message: "User not found" });
+      return handleCustomErrorResponse(res,"User not found",404);
     }
-    res.status(200).json(user);
+    handleSuccessResponse(res,"User fetched successfully");
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Error occurred" });
+    handleErrorResponse(error, req, res, "Server Error");
   }
 };
 
 const updateUserById = async (req, res) => {
-  const { id } = req.params;
   const { name, role } = req.body;
   try {
-    const user = await User.findByPk(id);
+    const user = await userById();
     if (!user) {
-      res.status(404).json({ message: "User not found" });
+      return handleCustomErrorResponse(res,"User not found",404);
     }
     if (name) user.name = name;
     user.role = role;
     await user.save();
 
-    res.status(200).json({ message: "User updated successfully", user });
+   handleSuccessResponse(res,"User Updated Successfully",201);
   } catch (error) {
-    console.log(error);
+    handleErrorResponse(error, req, res, "Server Error");
   }
 };
 

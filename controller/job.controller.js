@@ -1,39 +1,58 @@
 const { Job } = require("../models/jobModel");
 const { handleErrorResponse, handleSuccessResponse, handleCustomErrorResponse } = require("../utils/errorResponseHandlers");
-const { findJobByName, findJobById, findAllJobs, updateJob, deleteJob } = require("../context/job.context");
+const { findJobByCode, findJobById, findAllJobs, updateJob, deleteJob } = require("../context/job.context");
+const { Op } = require('sequelize');
 
-
-const createJob = async (req, res) => {
-    const { name, title, description, location, salary } = req.body;
+const createJobController = async (req, res) => {
+    const { jobCode,title, description, company, location, salaryRange, employmentType, experienceLevel, responsibilities, requirements, benefits, applicationDeadline, industry, jobFunction, remoteOption } = req.body;
     try {
-        const existingJob = await findJobByName(name);
-        if (existingJob) {
-            return handleCustomErrorResponse(res, 'Job already exists', 400);
-        }
-
-        const newJob = await Job.create({
-            name,
-            title,
-            description,
-            location,
-            salary
-        });
-
-        handleSuccessResponse(res, "Job Registered Successfully", newJob, 201);
+      const existingJob = await findJobByCode();
+      if (existingJob) {
+        return handleCustomErrorResponse(res, 'Job already exists', 400);
+      }
+  
+      const newJob = await Job.create({
+        jobCode,
+        title,
+        description,
+        company,
+        location,
+        salaryRange,
+        employmentType,
+        experienceLevel,
+        responsibilities,
+        requirements,
+        benefits,
+        applicationDeadline,
+        industry,
+        jobFunction,
+        remoteOption
+      });
+  
+      handleSuccessResponse(res, "Job Created Successfully", newJob, 201);
     } catch (error) {
-        handleErrorResponse(error, req, res, "Server Error");
+        console.log(error);
+      handleErrorResponse(error, req, res, "Server Error");
     }
-}
+  };
 
-const getJobAll = async (req, res) => {
+  const getAllJobsController = async (req, res) => {
     try {
-        const jobs = await findAllJobs();
-        handleSuccessResponse(res, "Jobs retrieved successfully", jobs, 200);
+      const jobs = await Job.findAll({
+        attributes: ['title', 'company', 'location', 'experienceLevel', 'experienceTime', 'salaryRange']
+      });
+  
+      if (jobs.length === 0) {
+        return handleCustomErrorResponse(res, 'No jobs found', 404);
+      }
+  
+      handleSuccessResponse(res, 'Jobs retrieved successfully', jobs, 200);
     } catch (error) {
-        handleErrorResponse(error, req, res, "Server Error");
+      console.error('[ERROR] Error in getAllJobs:', error);
+      handleErrorResponse(error, req, res, 'Server error');
     }
-}
-
+  };
+  
 const getJobById = async (req, res) => {
     try {
         const job = await findJobById(req.params.id);
@@ -83,4 +102,58 @@ const deleteJobByJob = async (req, res) => {
     }
 }
 
-module.exports = { createJob, getJobAll, getJobById, updateJobById, deleteJobByJob };
+
+const getJobsByFilters = async (req, res) => {
+  const { location, employmentType, title, page = 1, limit = 10 } = req.query;
+
+  try {
+    const pageNum = parseInt(page, 10);
+    const limitNum = parseInt(limit, 10);
+
+    let whereClause = {};
+
+    if (location) {
+      whereClause.location = {
+        [Op.iLike]: `%${location}%`
+      };
+    }
+
+    if (employmentType) {
+      whereClause.employmentType = {
+        [Op.iLike]: `%${employmentType}%`
+      };
+    }
+
+    if (title) {
+      whereClause.title = {
+        [Op.iLike]: `%${title}%`
+      };
+    }
+
+    const offset = (pageNum - 1) * limitNum;
+
+    const { rows: jobs, count: totalRecords } = await Job.findAndCountAll({
+      where: whereClause,
+      limit: limitNum,
+      offset: offset
+    });
+
+    const totalPages = Math.ceil(totalRecords / limitNum);
+
+    if (totalRecords === 0) {
+      return handleCustomErrorResponse(res, 'No jobs found matching the criteria', 404);
+    }
+
+    handleSuccessResponse(res, 'Jobs retrieved successfully', {
+      jobs,
+      totalRecords,
+      totalPages,
+      currentPage: pageNum
+    }, 200);
+  } catch (error) {
+    console.error('[ERROR] Error in getJobsByFilters:', error);
+    handleErrorResponse(error, req, res, 'Server error');
+  }
+};
+
+module.exports = { createJobController, getAllJobsController, getJobById, updateJobById, deleteJobByJob ,getJobsByFilters};

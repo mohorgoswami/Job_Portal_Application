@@ -6,4 +6,9 @@ const createUserSchema = Joi.object({
     password: Joi.string().required(),
 });
 
-module.exports = { createUserSchema }
+const updateUserSchema = Joi.object({
+    name: Joi.string().optional(),
+    role: Joi.string().optional()
+});
+
+module.exports = { createUserSchema ,updateUserSchema}
