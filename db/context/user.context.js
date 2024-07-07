@@ -1,27 +1,27 @@
-const { User } = require("../../models/index");
+const { User } = require('../../models/index')
 
-const createUser = async (data) => {
-    const user = await User.create(data)
+const createUser = async(data) => {
+  const user = await User.create(data)
 
-    return user
+  return user
 }
 
-const verifyEmail = async (email) => {
-    const emails = await User.findOne({
-        where: {
-            email
-        }
-    })
-    return emails
+const verifyEmail = async(email) => {
+  const emails = await User.findOne({
+    where: {
+      email
+    }
+  })
+  return emails
 }
 
-const userById = async (id) => {
-    const userId = await User.findByPk(id)
-    return userId
+const userById = async(id) => {
+  const userId = await User.findByPk(id)
+  return userId
 }
 
 module.exports = {
-    createUser,
-    verifyEmail,
-    userById,
+  createUser,
+  verifyEmail,
+  userById
 }
