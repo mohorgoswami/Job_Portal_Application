@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const { DataTypes } = require('sequelize')
 const { sequelize } = require('../config/db')
 

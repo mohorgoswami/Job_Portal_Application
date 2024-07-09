@@ -1,3 +1,6 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable space-before-function-paren */
+/* eslint-disable linebreak-style */
 /* eslint-disable max-len */
 const { Job, Company, Country, JobType } = require('../models/index')
 const { Op, col } = require('sequelize')

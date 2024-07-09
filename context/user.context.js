@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const { User } = require('../../models/index')
 
 const createUser = async(data) => {

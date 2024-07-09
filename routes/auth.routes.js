@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const express = require('express')
 const { signup, login } = require('../controller/auth.controller')
 

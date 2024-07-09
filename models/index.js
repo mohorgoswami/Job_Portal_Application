@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const { User } = require('../models/userModel')
 const { Job } = require('../models/jobModel')
 const { Application } = require('../models/application.model')

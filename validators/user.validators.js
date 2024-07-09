@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const Joi = require('joi')
 
 const createUserSchema = Joi.object({
@@ -7,8 +8,8 @@ const createUserSchema = Joi.object({
 })
 
 const updateUserSchema = Joi.object({
-    name: Joi.string().optional(),
-    role: Joi.string().optional()
-});
+  name: Joi.string().optional(),
+  role: Joi.string().optional()
+})
 
-module.exports = { createUserSchema ,updateUserSchema}
+module.exports = { createUserSchema, updateUserSchema }

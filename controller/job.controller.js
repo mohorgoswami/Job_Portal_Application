@@ -1,8 +1,9 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable max-len */
 const { handleErrorResponse, handleSuccessResponse, handleCustomErrorResponse } = require('../utils/errorResponseHandlers')
 const { findJobById, updateJob, deleteJob, createJobs, findJobByCode, findAndCountAllJobs } = require('../context/job.context')
 
-const createJobController = async (req, res) => {
+const createJobController = async(req, res) => {
   try {
     const existingJob = await findJobByCode(req.body.code)
     if (existingJob) {
@@ -19,7 +20,7 @@ const createJobController = async (req, res) => {
   }
 }
 
-const getAllJobs = async (req, res) => {
+const getAllJobs = async(req, res) => {
   try {
     const { page = 1, limit = 10, jobtype, country, jobtitle, company } = req.query
 
@@ -39,7 +40,7 @@ const getAllJobs = async (req, res) => {
   }
 }
 
-const getJobById = async (req, res) => {
+const getJobById = async(req, res) => {
   try {
     const { id } = req.params
     const job = await findJobById(id)
@@ -71,7 +72,7 @@ const getJobById = async (req, res) => {
   }
 }
 
-const updateJobById = async (req, res) => {
+const updateJobById = async(req, res) => {
   try {
     const job = await findJobById(req.params.id)
     if (!job) {
@@ -86,7 +87,7 @@ const updateJobById = async (req, res) => {
   }
 }
 
-const deleteJobByJob = async (req, res) => {
+const deleteJobByJob = async(req, res) => {
   try {
     const job = await findJobById(req.params.id)
     if (!job) {

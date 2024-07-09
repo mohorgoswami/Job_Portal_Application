@@ -1,4 +1,9 @@
-const Joi = require('joi');
+/* eslint-disable linebreak-style */
+/* eslint-disable max-len */
+/* eslint-disable linebreak-style */
+/* eslint-disable no-unused-vars */
+/* eslint-disable eol-last */
+const Joi = require('joi')
 
 const createJobSchema = Joi.object({
   title: Joi.string().required(),
@@ -15,4 +20,4 @@ const createJobSchema = Joi.object({
   industry: Joi.string().optional(),
   jobFunction: Joi.string().optional(),
   remoteOption: Joi.boolean().optional()
-});
+})

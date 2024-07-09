@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable no-unused-vars */
 /* eslint-disable eqeqeq */
 /* eslint-disable max-len */
@@ -12,7 +13,7 @@ const generateToken = (user) => {
   return jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '30d' })
 }
 
-const signup = async (req, res) => {
+const signup = async(req, res) => {
   const { firstname, lastname, email, password, confirmPassword } = req.body
 
   try {
@@ -34,7 +35,7 @@ const signup = async (req, res) => {
   }
 }
 
-const login = async (req, res) => {
+const login = async(req, res) => {
   const { email, password } = req.body
 
   try {

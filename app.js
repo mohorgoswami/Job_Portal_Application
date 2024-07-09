@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const express = require('express')
 const indexRoutes = require('./routes/index')
 const { sequelize } = require('./config/db')
