@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable linebreak-style */
-const { JobType } = require('../models/jobType.model')
+const { JobType } = require('../models/index')
 
 const createjobType = async(data) => {
   return await JobType.create(data)
