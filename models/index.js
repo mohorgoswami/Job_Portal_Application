@@ -1,4 +1,8 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable key-spacing */
+/* eslint-disable linebreak-style */
+/* eslint-disable comma-spacing */
+/* eslint-disable linebreak-style */
 const { User } = require('../models/userModel')
 const { Job } = require('../models/jobModel')
 const { Application } = require('../models/application.model')
@@ -43,6 +47,19 @@ Country.hasMany(Job, {
   foreignKey: 'countryId'
 })
 
+Company.belongsTo(Industry,{
+  foreignKey: 'industryId'
+})
+Industry.hasMany(Company,{
+  foreignKey: 'industryId'
+
+})
+Company.belongsTo(Country,{
+  foreignKey:'countryId'
+})
+Country.hasMany(Company,{
+  foreignKey:'countryId'
+})
 module.exports = {
   User,
   Job,

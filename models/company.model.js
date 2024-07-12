@@ -1,3 +1,5 @@
+/* eslint-disable comma-dangle */
+/* eslint-disable key-spacing */
 /* eslint-disable linebreak-style */
 const { DataTypes } = require('sequelize')
 const { sequelize } = require('../config/db')
@@ -21,7 +23,13 @@ const Company = sequelize.define('Company', {
   },
   website: {
     type: DataTypes.STRING
-  }
+  },
+  size:{
+    type:DataTypes.INTEGER
+  },
+  specialties:{
+    type:DataTypes.STRING
+  },
 }, {
 })
 

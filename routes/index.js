@@ -9,7 +9,6 @@ const companyRoutes = require('../routes/company.routes')
 const countryRoutes = require('../routes/country.routes')
 const industryRoutes = require('../routes/industry.routes')
 const jobTypeRoutes = require('../routes/jobType.routes')
-
 const authRoutes = require('../routes/auth.routes')
 
 router.use('/users', userRoutes)
