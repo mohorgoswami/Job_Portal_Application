@@ -1,8 +1,9 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable max-len */
 const { createUser, verifyEmail, userById } = require('../db/context/user.context')
 const { handleSuccessResponse, handleErrorResponse, handleCustomErrorResponse } = require('../utils/handlers/errorResponseHandlers')
 
-const createUsers = async (req, res) => {
+const createUsers = async(req, res) => {
   try {
     const isEmail = await verifyEmail(req.body.email)
     if (isEmail) {
@@ -15,7 +16,7 @@ const createUsers = async (req, res) => {
   }
 }
 
-const getUserById = async (req, res) => {
+const getUserById = async(req, res) => {
   const { id } = req.params
   try {
     const user = await userById(id)
@@ -27,9 +28,9 @@ const getUserById = async (req, res) => {
     console.log(error)
     res.status(500).json({ message: 'Error occurred' })
   }
-};
+}
 
-const updateUserById = async (req, res) => {
+const updateUserById = async(req, res) => {
   const { id } = req.params
   const { name, role } = req.body
   try {
@@ -45,6 +46,6 @@ const updateUserById = async (req, res) => {
   } catch (error) {
     console.log(error)
   }
-};
+}
 
 module.exports = { getUserById, updateUserById, createUsers }

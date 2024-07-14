@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-const { User } = require('../../models/index')
+const { User } = require('../models/userModel')
 
 const createUser = async(data) => {
   const user = await User.create(data)
@@ -7,7 +7,7 @@ const createUser = async(data) => {
   return user
 }
 
-const findJobById = async(id) => {
+const findUserById = async(id) => {
   return await User.findByPk(id)
 }
 
@@ -23,5 +23,5 @@ const verifyEmail = async(email) => {
 module.exports = {
   createUser,
   verifyEmail,
-  findJobById
+  findUserById
 }

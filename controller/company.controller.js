@@ -37,7 +37,7 @@ const getAllCompanyController = async(req, res) => {
 
 const getCompanyByIdController = async(req, res) => {
   try {
-    const {id} = req.params
+    const { id } = req.params
     const company = await findCompanyById(id)
     handleSuccessResponse(res, 'Company with id is  fetched Successfully', company, 200)
 
@@ -70,9 +70,69 @@ const deleteCompanyIdController = async(req, res) => {
     }
 
     await deleteCompany(job)
-    handleSuccessResponse(res, 'Job deleted successfully', {}, 200)
+    handleSuccessResponse(res, 'Company deleted successfully', {}, 200)
   } catch (error) {
     handleErrorResponse(error, req, res, 'Server Error')
   }
 }
-module.exports = { createCompanyController, getAllCompanyController, getCompanyByIdController, updateCompanyByIdController, deleteCompanyIdController}
+
+const addFollower = async(req, res) => {
+  try {
+    const { companyId } = req.params
+    const { follower } = req.body
+
+    let company = await findCompanyById(companyId)
+
+    if (!company) {
+      return res.status(404).json({ message: 'Company not found' })
+    }
+
+    const followerset = new Set(company.followers || [])
+    followerset.add(follower)
+
+    company.followers = Array.from(followerset)
+    company = await company.save()
+
+    res.status(200).json({ message: 'Follower added successfully', followers: company.followers })
+  } catch (error) {
+    res.status(500).json({ message: 'An error occurred', error: error.message })
+  }
+}
+
+const removeFollower = async(req, res) => {
+  try {
+    const { companyId } = req.params
+    const { follower } = req.body
+
+    let company = await findCompanyById(companyId)
+
+    if (!company) {
+      return res.status(404).json({ message: 'Company not found' })
+    }
+
+    if (!company.followers) {
+      company.followers = []
+    }
+
+    const followerSet = new Set(company.followers || [])
+
+    followerSet.delete(follower)
+
+    company.followers = Array.from(followerSet)
+    company = await company.save()
+
+    res.status(200).json({ message: 'Follower removed successfully', followers: company.followers })
+  } catch (error) {
+    res.status(500).json({ message: 'An error occurred', error: error.message })
+  }
+}
+
+module.exports = {
+  createCompanyController,
+  getAllCompanyController,
+  getCompanyByIdController,
+  updateCompanyByIdController,
+  deleteCompanyIdController,
+  addFollower,
+  removeFollower
+}

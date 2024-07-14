@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const handleErrorResponse = (error, req, res, customMessage) => {
   const statusCode = error.statusCode || 500
   const message = customMessage || 'Unexpected Error'

@@ -39,7 +39,7 @@ const getCountryByIdController = async(req, res) => {
   try {
     const {id} = req.params
     const Country = await findCountryById(id)
-    handleSuccessResponse(res, 'Country with id is  fetched Successfully', Country, 200)
+    handleSuccessResponse(res, 'Country with id is fetched Successfully', Country, 200)
 
   } catch (error) {
     handleErrorResponse(error, req, res, 'Server Error')
@@ -55,7 +55,6 @@ const updateCountryByIdController = async(req, res) => {
     if (updatedRows === 0) {
       return handleErrorResponse(new Error('Country not found'), req, res, 'Country not found', 404)
     }
-
     handleSuccessResponse(res, `Country with id ${id} updated successfully`, { id, ...data }, 200)
   } catch (error) {
     handleErrorResponse(error, req, res, 'Server Error')

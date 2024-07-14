@@ -1,7 +1,8 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-console */
 // eslint-disable-next-line quotes
-const { app, PORT, sequelize } = require("./app")
+
+const { app, PORT, sequelize } = require('./app')
 sequelize.sync({ alter: true })
   .then(() => {
     console.log('Database synced successfully')
