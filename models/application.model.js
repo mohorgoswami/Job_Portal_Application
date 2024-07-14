@@ -9,10 +9,6 @@ const Application = sequelize.define('Application', {
     primaryKey: true,
     autoIncrement: true
   },
-  code: {
-    type: DataTypes.STRING,
-    allowNull: true
-  },
   firstName: {
     type: DataTypes.STRING,
     allowNull: true

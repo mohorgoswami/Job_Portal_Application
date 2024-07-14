@@ -25,6 +25,6 @@ const updateCompany = async(id, data) => {
 }
 
 const deleteCompany = async(company) => {
-  return await company.destroy()
+  return await Company.destroy()
 }
 module.exports={createCompany, findCompanyByCode, findCompanyById, findAllCompany, updateCompany, deleteCompany }

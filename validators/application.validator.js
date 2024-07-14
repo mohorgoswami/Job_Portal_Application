@@ -16,3 +16,15 @@ const createApplicationSchema = Joi.object({
   resume: Joi.string().required(),
   agreeWithTerms: Joi.boolean().optional()
 })
+const updateApplicationSchema = Joi.object({
+  code: Joi.string().required(),
+  firstName: Joi.string().required(),
+  lastName: Joi.string().required(),
+  coverLetter: Joi.string().required(),
+  phoneNumber: Joi.string().required(),
+  emailId: Joi.string().required(),
+  shortBio: Joi.string().required(),
+  status: Joi.string().valid('submitted', 'reviewing', 'interview', 'offered', 'rejected'),
+  resume: Joi.string().required(),
+  agreeWithTerms: Joi.boolean().optional()
+})

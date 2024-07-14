@@ -1,3 +1,7 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable max-len */
+/* eslint-disable linebreak-style */
+
 const validateRequestBody = (schema) => {
   return (req, res, next) => {
     const { error } = schema.validate(req.body)

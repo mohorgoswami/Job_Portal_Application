@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable key-spacing */
 /* eslint-disable linebreak-style */
 // src/validators/companyValidator.js

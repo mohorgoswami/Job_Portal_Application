@@ -38,8 +38,21 @@ const getAllCompanyController = async(req, res) => {
 const getCompanyByIdController = async(req, res) => {
   try {
     const {id} = req.params
-    const company = await findCompanyById(id)
-    handleSuccessResponse(res, 'Company with id is  fetched Successfully', company, 200)
+    const company = await findCompanyById(id, {
+      attributes: ['id', 'name', 'industry', 'description', 'website', 'size', 'countryId', 'specialties']
+    })
+    const response = {
+      id: company.id,
+      name: company.name,
+      Headquater: company.industryId,
+      description: company.description,
+      website: company.website,
+      size: company.size,
+      countryId: company.countryId,
+      specialty: company.specialties
+    }
+
+    handleSuccessResponse(res, 'Company with id is  fetched Successfully', response, 200)
 
   } catch (error) {
     handleErrorResponse(error, req, res, 'Server Error')
@@ -64,13 +77,13 @@ const updateCompanyByIdController = async(req, res) => {
 
 const deleteCompanyIdController = async(req, res) => {
   try {
-    const job = await findCompanyById(req.params.id)
-    if (!job) {
+    const Company = await findCompanyById(req.params.id)
+    if (!Company) {
       return handleCustomErrorResponse(res, 'Company not found', 404)
     }
 
-    await deleteCompany(job)
-    handleSuccessResponse(res, 'Job deleted successfully', {}, 200)
+    await deleteCompany(Company)
+    handleSuccessResponse(res, 'Company deleted successfully', {}, 200)
   } catch (error) {
     handleErrorResponse(error, req, res, 'Server Error')
   }
