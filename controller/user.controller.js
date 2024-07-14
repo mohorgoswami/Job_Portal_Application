@@ -1,6 +1,4 @@
 /* eslint-disable linebreak-style */
-/* eslint-disable semi */
-/* eslint-disable linebreak-style */
 /* eslint-disable max-len */
 const { createUser, verifyEmail, userById } = require('../db/context/user.context')
 const { handleSuccessResponse, handleErrorResponse, handleCustomErrorResponse } = require('../utils/handlers/errorResponseHandlers')
@@ -29,7 +27,7 @@ const getUserById = async(req, res) => {
   } catch (error) {
     res.status(500).json({ message: 'Error occurred' })
   }
-};
+}
 
 const updateUserById = async(req, res) => {
   const { id } = req.params
@@ -46,6 +44,6 @@ const updateUserById = async(req, res) => {
     res.status(200).json({ message: 'User updated successfully', user })
   } catch (error) {
   }
-};
+}
 
 module.exports = { getUserById, updateUserById, createUsers }

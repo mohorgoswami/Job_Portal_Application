@@ -19,7 +19,7 @@ const findAllCountry = async() => {
 const updateCountry = async(id, data) => {
   return await Country.update(data, { where: { id } })
 }
-  
+
 const deleteCountry = async(Country) => {
   return await Country.destroy()
 }

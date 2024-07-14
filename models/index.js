@@ -11,6 +11,9 @@ const { JobType } = require('../models/jobType.model')
 const { Company } = require('../models/company.model')
 const { Industry } = require('../models/industry.model')
 const { Country } = require('../models/country.model')
+const { State } = require('./state.model')
+const { City } = require('./city.model')
+const { Product } = require('./product.model')
 
 User.hasOne(Profile, {
   foreignKey: 'userId'
@@ -47,6 +50,41 @@ Country.hasMany(Job, {
   foreignKey: 'countryId'
 })
 
+City.belongsTo(State, {
+  foreignKey: 'stateId'
+})
+State.hasMany(City, {
+  foreignKey: 'stateId'
+})
+
+State.belongsTo(Country, {
+  foreignKey: 'countryId'
+})
+Country.hasMany(State, {
+  foreignKey: 'countryId'
+})
+
+Industry.hasMany(Company, {
+  foreignKey: 'industryId'
+})
+Company.belongsTo(Industry, {
+  foreignKey: 'industryId'
+})
+
+Country.hasMany(Company, {
+  foreignKey: 'countryId'
+})
+Company.belongsTo(Country, {
+  foreignKey: 'countryId'
+})
+
+Company.hasMany(Product, {
+  foreignKey: 'companyId'
+})
+Product.belongsTo(Company, {
+  foreignKey: 'companyId'
+})
+
 Company.belongsTo(Industry,{
   foreignKey: 'industryId'
 })
@@ -68,5 +106,8 @@ module.exports = {
   JobType,
   Company,
   Industry,
-  Country
+  Country,
+  State,
+  City,
+  Product
 }

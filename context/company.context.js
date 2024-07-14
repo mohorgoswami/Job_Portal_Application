@@ -5,15 +5,15 @@
 /* eslint-disable space-infix-ops */
 /* eslint-disable object-curly-spacing */
 /* eslint-disable quotes */
-const {Company}=require("../models/company.model")
+const { Company } = require("../models/company.model")
 
-const createCompany=async(data)=>{
+const createCompany = async(data) => {
   return await Company.create(data)
 }
 const findCompanyByCode = async(code) => {
   return await Company.findOne({ where: { code } })
 }
-const findCompanyById=async(id)=>{
+const findCompanyById = async(id) => {
   return await Company.findByPk(id)
 }
 const findAllCompany = async() => {
@@ -27,4 +27,4 @@ const updateCompany = async(id, data) => {
 const deleteCompany = async(company) => {
   return await Company.destroy()
 }
-module.exports={createCompany, findCompanyByCode, findCompanyById, findAllCompany, updateCompany, deleteCompany }
+module.exports = { createCompany, findCompanyByCode, findCompanyById, findAllCompany, updateCompany, deleteCompany }

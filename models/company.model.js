@@ -25,6 +25,16 @@ const Company = sequelize.define('Company', {
   website: {
     type: DataTypes.STRING
   },
+  specialties: {
+    type: DataTypes.STRING
+  },
+  size: {
+    type: DataTypes.STRING
+  },
+  followers: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    defaultValue: []
+  },
   size:{
     type:DataTypes.INTEGER
   },

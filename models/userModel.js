@@ -25,6 +25,10 @@ const User = sequelize.define('Users', {
     type: DataTypes.STRING
     // allowNull: false
   },
+  refreshToken: {
+    type: DataTypes.STRING
+    // allowNull: false
+  },
   role: {
     type: DataTypes.STRING
   }

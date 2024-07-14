@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable max-len */
 /* eslint-disable linebreak-style */
+/* eslint-disable max-len */
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
