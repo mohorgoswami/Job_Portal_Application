@@ -35,12 +35,6 @@ const Company = sequelize.define('Company', {
     type: DataTypes.ARRAY(DataTypes.STRING),
     defaultValue: []
   },
-  size:{
-    type:DataTypes.INTEGER
-  },
-  specialties:{
-    type:DataTypes.STRING
-  },
 }, {
 })
 

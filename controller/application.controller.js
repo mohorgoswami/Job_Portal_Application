@@ -7,7 +7,7 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 /* eslint-disable semi */
-const { findAllApplication, findApplicationById, updateApplication, deleteApplication, findApplicationByEmail,createApplications } = require('../context/Application.context')
+const { findAllApplication, findApplicationById, updateApplication, deleteApplication, findApplicationByEmail, createApplications } = require('../context/Application.context')
 const { handleErrorResponse, handleSuccessResponse, handleCustomErrorResponse } = require('../utils/errorResponseHandlers')
 
 const createApplicationController = async(req, res) => {
