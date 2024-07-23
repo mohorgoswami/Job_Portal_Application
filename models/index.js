@@ -14,6 +14,10 @@ const { Country } = require('../models/country.model')
 const { State } = require('./state.model')
 const { City } = require('./city.model')
 const { Product } = require('./product.model')
+const { University } = require('./university.model')
+const { FieldOfStudy } = require('./fieldOfStudy.model')
+const { Grade } = require('./grade.model')
+const { Degree } = require('./degree.model')
 
 User.hasOne(Profile, {
   foreignKey: 'userId'
@@ -109,5 +113,9 @@ module.exports = {
   Country,
   State,
   City,
-  Product
+  Product,
+  University,
+  FieldOfStudy,
+  Grade,
+  Degree
 }

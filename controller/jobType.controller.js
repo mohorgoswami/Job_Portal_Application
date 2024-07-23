@@ -64,12 +64,12 @@ const updatejobTypeByIdController = async(req, res) => {
 
 const deletejobTypeIdController = async(req, res) => {
   try {
-    const job = await findjobTypeById(req.params.id)
-    if (!job) {
+    const jobType = await findjobTypeById(req.params.id)
+    if (!jobType) {
       return handleCustomErrorResponse(res, 'jobType not found', 404)
     }
 
-    await deletejobType(job)
+    await deletejobType(jobType)
     handleSuccessResponse(res, 'Job deleted successfully', {}, 200)
   } catch (error) {
     handleErrorResponse(error, req, res, 'Server Error')

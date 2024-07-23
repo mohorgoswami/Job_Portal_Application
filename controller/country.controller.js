@@ -39,7 +39,7 @@ const getCountryByIdController = async(req, res) => {
   try {
     const {id} = req.params
     const Country = await findCountryById(id)
-    handleSuccessResponse(res, 'Country with id is fetched Successfully', Country, 200)
+    handleSuccessResponse(res, 'Country with id isnot exist', Country, 200)
 
   } catch (error) {
     handleErrorResponse(error, req, res, 'Server Error')
@@ -63,13 +63,13 @@ const updateCountryByIdController = async(req, res) => {
 
 const deleteCountryIdController = async(req, res) => {
   try {
-    const job = await findCountryById(req.params.id)
-    if (!job) {
+    const Country = await findCountryById(req.params.id)
+    if (!Country) {
       return handleCustomErrorResponse(res, 'Country not found', 404)
     }
 
-    await deleteCountry(job)
-    handleSuccessResponse(res, 'Job deleted successfully', {}, 200)
+    await deleteCountry(Country)
+    handleSuccessResponse(res, 'Country deleted successfully', {}, 200)
   } catch (error) {
     handleErrorResponse(error, req, res, 'Server Error')
   }

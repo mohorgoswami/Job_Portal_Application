@@ -24,51 +24,16 @@ const Profile = sequelize.define('Profile', {
     type: DataTypes.TEXT,
     allowNull: true
   },
-  dateOfBirth: {
-    type: DataTypes.DATE,
-    allowNull: true
-  },
-  nationality: {
-    type: DataTypes.STRING,
-    allowNull: true
-  },
   linkedInProfile: {
     type: DataTypes.STRING,
-    allowNull: true
-  },
-  personalWebsite: {
-    type: DataTypes.STRING,
-    allowNull: true
-  },
-  education: {
-    type: DataTypes.JSON,
-    allowNull: true
-  },
-  experience: {
-    type: DataTypes.JSON,
-    allowNull: true
-  },
-  skills: {
-    type: DataTypes.JSON,
     allowNull: true
   },
   contactInfo: {
     type: DataTypes.JSON,
     allowNull: true
   },
-  certifications: {
-    type: DataTypes.JSON,
-    allowNull: true
-  },
-  languages: {
-    type: DataTypes.STRING
-  },
-  projects: {
-    type: DataTypes.JSON,
-    allowNull: true
-  },
-  references: {
-    type: DataTypes.JSON,
+  resume: {
+    type: DataTypes.STRING,
     allowNull: true
   }
 }, {

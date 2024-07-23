@@ -64,13 +64,13 @@ const updateIndustryByIdController = async(req, res) => {
 
 const deleteIndustryIdController = async(req, res) => {
   try {
-    const job = await findIndustryById(req.params.id)
-    if (!job) {
+    const Industry = await findIndustryById(req.params.id)
+    if (!Industry) {
       return handleCustomErrorResponse(res, 'Industry not found', 404)
     }
 
-    await deleteIndustry(job)
-    handleSuccessResponse(res, 'Job deleted successfully', {}, 200)
+    await deleteIndustry(Industry)
+    handleSuccessResponse(res, 'Industry deleted successfully', {}, 200)
   } catch (error) {
     handleErrorResponse(error, req, res, 'Server Error')
   }

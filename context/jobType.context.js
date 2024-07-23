@@ -20,7 +20,7 @@ const updatejobType = async(id, data) => {
   return await JobType.update(data, { where: { id } })
 }
   
-const deletejobType = async(jobType) => {
+const deletejobType = async(JobType) => {
   return await JobType.destroy()
 }
 
